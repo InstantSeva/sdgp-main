@@ -1,0 +1,54 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "*"
+      ],
+      "@env": [
+        "./src/core/env.js"
+      ],
+      // "@@": ["./*"],
+      "@assets/*": [
+        "assets/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@store/*": [
+        "src/stores/*"
+      ],
+      "@themes/*": [
+        "src/themes/*"
+      ]
+    },
+    "esModuleInterop": true,
+    "checkJs": false,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true
+  },
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "docs",
+    "cli",
+    "android",
+    "ios",
+    "lint-staged.config.js",
+    "eslint.config.mjs"
+  ],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts",
+    "assets/**/*",
+    "src/**/*",
+    "env.d.ts"
+  ]
+}
