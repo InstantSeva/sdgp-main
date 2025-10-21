@@ -83,6 +83,7 @@ function ThemedApp({
   );
 }
 
+// ✅ Typed styles
 export const MainLayoutStyle = () =>
   StyleSheet.create({
     viewContainer: {
