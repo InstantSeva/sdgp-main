@@ -3,7 +3,6 @@ name: 🚀 Deploy Web App to Vercel
 on:
   push:
     branches:
-      - main
       - dev-release         # Trigger only when you push to main
     paths:
       - 'web/**'     # ✅ Run only when files in /web change
