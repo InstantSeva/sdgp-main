@@ -3,9 +3,9 @@ name: 🚀 Deploy Web App to Vercel
 on:
   push:
     branches:
-      - dev-release         # Trigger only when you push to main
+      - dev-release
     paths:
-      - 'web/**'     # ✅ Run only when files in /web change
+      - 'sdgp-web/**'
 
 jobs:
   deploy-web:
