@@ -1,26 +1,200 @@
 .hero-container {
-  padding-top: 100px;
+  padding-top: 80px;
+  padding-bottom: 60px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+// Heading styles
+.heading-container {
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 2;
+
+  .main-heading {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    color: $white-color;
+    margin: 0 0 24px 0;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .main-description {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
 }
 
 .hero-main-container {
-  height: 642px;
+  width: 100%;
+  min-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: $main-bg;
-  background-size: cover;
-  background-position: center center;
+  background: linear-gradient(180deg, #000c14 0%, #001122 50%, #000c14 100%);
+  background-size: 100% 100%;
+  position: relative;
   overflow: hidden;
-  translate: none;
-  rotate: none;
-  scale: none;
-  left: 0px;
-  top: 0.001px;
-  margin: 0px;
-  max-width: 1343px;
-  width: 1343px;
-  max-height: 642px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  transform: translate(0px, 0px);
+
+  // Blue light streaks effect
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      linear-gradient(90deg, transparent 0%, rgba(56, 189, 248, 0.1) 50%, transparent 100%),
+      linear-gradient(
+        0deg,
+        transparent 0%,
+        rgba(56, 189, 248, 0.08) 30%,
+        transparent 60%,
+        rgba(56, 189, 248, 0.08) 80%,
+        transparent 100%
+      );
+    background-size: 200% 200%;
+    animation: streakMove 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  @keyframes streakMove {
+    0%,
+    100% {
+      background-position:
+        0% 0%,
+        0% 0%;
+    }
+    50% {
+      background-position:
+        100% 100%,
+        50% 50%;
+    }
+  }
+
+  // Additional glow effects
+  &::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+// Animated Wave Container
+.hero-wave-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+
+  .wave-svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    transform-origin: center bottom;
+  }
+
+  .wave-1 {
+    animation: waveMove1 15s ease-in-out infinite;
+    bottom: -10%;
+  }
+
+  .wave-2 {
+    animation: waveMove2 18s ease-in-out infinite;
+    bottom: -5%;
+    animation-delay: -3s;
+  }
+
+  .wave-3 {
+    animation: waveMove3 20s ease-in-out infinite;
+    bottom: 0%;
+    animation-delay: -6s;
+  }
+
+  @keyframes waveMove1 {
+    0%,
+    100% {
+      transform: translateX(0) translateY(0) scaleY(1);
+      opacity: 0.4;
+    }
+    25% {
+      transform: translateX(-5%) translateY(-2%) scaleY(1.05);
+      opacity: 0.5;
+    }
+    50% {
+      transform: translateX(5%) translateY(2%) scaleY(0.95);
+      opacity: 0.4;
+    }
+    75% {
+      transform: translateX(-3%) translateY(-1%) scaleY(1.02);
+      opacity: 0.45;
+    }
+  }
+
+  @keyframes waveMove2 {
+    0%,
+    100% {
+      transform: translateX(0) translateY(0) scaleY(1);
+      opacity: 0.3;
+    }
+    33% {
+      transform: translateX(8%) translateY(-3%) scaleY(1.08);
+      opacity: 0.4;
+    }
+    66% {
+      transform: translateX(-8%) translateY(3%) scaleY(0.92);
+      opacity: 0.3;
+    }
+  }
+
+  @keyframes waveMove3 {
+    0%,
+    100% {
+      transform: translateX(0) translateY(0) scaleY(1);
+      opacity: 0.25;
+    }
+    40% {
+      transform: translateX(-10%) translateY(-4%) scaleY(1.1);
+      opacity: 0.35;
+    }
+    80% {
+      transform: translateX(10%) translateY(4%) scaleY(0.9);
+      opacity: 0.25;
+    }
+  }
+
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    .wave-svg {
+      min-height: 150px;
+    }
+  }
 }

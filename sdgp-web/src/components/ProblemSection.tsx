@@ -35,13 +35,12 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({ onPhoneLeave }) => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: 'top 80%',
-        end: 'bottom 40%', // End earlier to reduce gap
+        start: 'top 75%',
         scrub: true,
         markers: false,
+        anticipatePin: 1, // ✅ helps prevent scroll jumps
         onLeave: () => {
-          // Notify parent when section is completely left
-          onPhoneLeave?.();
+          onPhoneLeave?.(); // ✅ still notify parent safely
         },
       },
     });

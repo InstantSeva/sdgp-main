@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Box, Container, Typography } from '@mui/material';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import phoneMain from '../assets/phone-main.png'; // ✅ your image path
+import phoneMain from '../assets/phone-main.png';
 import SubSectionHeading from './SubSectionHeading';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -10,64 +10,81 @@ gsap.registerPlugin(ScrollTrigger);
 const TrustSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const phoneRef = useRef<HTMLDivElement | null>(null);
-  const graphRef = useRef<HTMLDivElement | null>(null);
-  const nodesRef = useRef<(HTMLDivElement | null)[]>([]); // ✅ This works
+  const nodesRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const section = sectionRef.current;
     const phone = phoneRef.current;
-    const graph = graphRef.current;
+    if (!section || !phone) return;
 
-    if (!section || !phone || !graph) return;
+    // Initial state setup
+    gsap.set(phone, {
+      opacity: 0,
+      y: -200,
+      xPercent: -50,
+      left: '50%',
+      position: 'absolute',
+      top: 0,
+    });
+    nodesRef.current.forEach((node) => {
+      if (node) gsap.set(node, { opacity: 0, x: 50 });
+    });
 
-    // Set initial states
-    gsap.set(phone, { opacity: 0, y: -100, xPercent: -50, left: '50%' });
-    gsap.set(graph, { opacity: 0 });
-    nodesRef.current.forEach((n) => gsap.set(n, { opacity: 0, y: 30 }));
-
-    const tl = gsap.timeline({
+    // Phone animation timeline
+    const phoneTl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: 'top 75%',
-        end: 'bottom 50%',
+        start: 'top center',
+        end: '+=500',
         scrub: true,
+        pin: false,
       },
     });
 
-    // Step 1: Phone appears and moves to center
-    tl.to(phone, {
-      opacity: 1,
-      y: 0,
-      duration: 1.2,
-      ease: 'power2.out',
+    // Phone moves from top to center, then slides left
+    phoneTl
+      .to(phone, {
+        opacity: 1,
+        y: '30vh',
+        duration: 1.2,
+        ease: 'power3.out',
+      })
+      .to(phone, {
+        xPercent: 0,
+        left: '20%',
+        duration: 1,
+        ease: 'power3.inOut',
+      });
+
+    // Nodes fade in one by one
+    const nodesTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 60%',
+        end: 'bottom 30%',
+        scrub: 1,
+      },
     });
 
-    // Step 2: Move phone to left
-    tl.to(phone, {
-      left: '25%',
-      xPercent: -50,
-      duration: 1,
-      ease: 'power2.inOut',
-    });
-
-    // Step 3: Show graph and animate nodes
-    tl.to(graph, { opacity: 1, duration: 0.5, ease: 'power1.out' });
     nodesRef.current.forEach((node, i) => {
-      tl.to(node, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '-=0.2');
-    });
-
-    // Step 4: Hide graph + move phone to bottom
-    tl.to(graph, { opacity: 0, duration: 0.6, ease: 'power2.in' });
-    tl.to(phone, {
-      top: '80%',
-      opacity: 0,
-      duration: 1,
-      ease: 'power2.inOut',
+      if (node) {
+        nodesTl.to(
+          node,
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.6,
+            ease: 'power2.out',
+          },
+          i * 0.2
+        );
+      }
     });
 
     return () => {
+      phoneTl.kill();
+      nodesTl.kill();
       ScrollTrigger.getAll().forEach((t) => t.kill());
-      tl.kill();
     };
   }, []);
 
@@ -83,95 +100,96 @@ const TrustSection: React.FC = () => {
       ref={sectionRef}
       style={{
         position: 'relative',
-        backgroundColor: '#0e141b',
+        backgroundColor: '#0E141B',
         color: '#fff',
         overflow: 'hidden',
-        padding: '120px 0',
-        textAlign: 'center',
+        padding: '160px 0',
+        width: '100%',
+        minHeight: '100vh',
       }}
     >
-      <Container maxWidth="lg">
+      <Container
+        maxWidth="lg"
+        sx={{
+          position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '100%',
+        }}
+      >
+        {/* Heading */}
         <SubSectionHeading
-          title="  Why People Trust Us"
-          description=" We combine AI, verified identities, privacy protection and safety-first design to create
-          the most secure service ecosystem for locals."
+          title="Why People Trust Us"
+          description="We combine AI, verified identities, privacy protection and safety-first design to create the most secure service ecosystem for locals."
         />
-        {/* 📱 Phone */}
+
+        {/* Phone */}
         <Box
           ref={phoneRef}
           sx={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: { xs: 180, md: 240 },
-            height: { xs: 340, md: 420 },
-            backgroundImage: `url(${phoneMain})`, // ✅ your imported image
-            backgroundSize: 'contain',
+            backgroundImage: `url(${phoneMain})`,
             backgroundRepeat: 'no-repeat',
+            backgroundSize: 'contain',
             backgroundPosition: 'center',
-            zIndex: 3,
+            width: { xs: 200, md: 260 },
+            height: { xs: 380, md: 460 },
+            zIndex: 5,
           }}
         />
 
-        {/* 📊 Graph + Nodes */}
+        {/* Nodes (right side) */}
         <Box
-          ref={graphRef}
           sx={{
             position: 'relative',
-            ml: { md: '50%', xs: 0 },
+            mt: { xs: 6, md: 0 },
+            ml: { md: '50%' },
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'flex-start',
-            gap: 5,
-            mt: { xs: 15, md: 0 },
-            pl: { md: 8, xs: 0 },
+            justifyContent: 'center',
+            gap: 3,
+            width: { xs: '100%', md: '45%' },
           }}
         >
           {graphNodes.map((text, i) => (
             <Box
               key={i}
-              ref={(el) => {
-                if (el) nodesRef.current[i] = el;
+              ref={(el: HTMLDivElement | null) => {
+                nodesRef.current[i] = el;
               }}
               sx={{
-                position: 'relative',
-                p: 2,
-                backgroundColor: 'rgba(255,255,255,0.08)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 2,
+                backgroundColor: 'rgba(255,255,255,0.06)',
+                border: '1px solid rgba(255,255,255,0.1)',
                 borderRadius: 2,
-                minWidth: { xs: 'auto', md: 280 },
-                textAlign: 'left',
+                p: 2,
+                width: '100%',
+                position: 'relative',
                 '&::before': {
                   content: '""',
-                  position: 'absolute',
-                  left: '-32px',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  width: '12px',
-                  height: '12px',
+                  width: '10px',
+                  height: '10px',
                   borderRadius: '50%',
-                  backgroundColor: '#00b4d8',
+                  backgroundColor: '#00B4D8',
+                  flexShrink: 0,
                 },
               }}
             >
-              <Typography variant="body1" sx={{ fontWeight: 500 }}>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontWeight: 500,
+                  fontSize: { xs: '1rem', md: '1.05rem' },
+                }}
+              >
                 {text}
               </Typography>
             </Box>
           ))}
-
-          {/* Connecting line */}
-          <Box
-            sx={{
-              position: 'absolute',
-              left: '-26px',
-              top: 0,
-              bottom: 0,
-              width: '2px',
-              backgroundColor: '#00b4d8',
-              opacity: 0.5,
-            }}
-          />
         </Box>
       </Container>
     </section>
