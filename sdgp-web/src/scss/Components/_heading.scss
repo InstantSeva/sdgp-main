@@ -1,0 +1,11 @@
+.heading-container {
+  text-align: center;
+  color: $white-color;
+  padding-left: 16px;
+  padding-right: 16px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

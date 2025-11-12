@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+  font-family: $preferred_font !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.main-heading {
+  font-size: $font-size-large--lite-x;
+  font-weight: $font-weight-bold--1;
+  margin: 0;
+}
+
+.main-description {
+  font-size: $font-size-medium--lite;
+  font-weight: $font-weight-lite;
+  color: $text-smoke;
+  max-width: 700px;
+}
+.sub-heading {
+  font-size: $font-size-large--lite-7;
+  font-weight: $font-weight-bold--1;
+  margin: 0;
+}
+
+.sub-description {
+  font-size: $font-size-small--lite-2;
+  font-weight: $font-weight-lite;
+  color: $text-smoke;
+  max-width: 700px;
+}
