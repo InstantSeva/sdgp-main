@@ -6,6 +6,7 @@ import FeaturesSection from '../components/FeaturesSection'; // Your existing ca
 import MeetOurTeam from '../components/MeetOurTeam';
 import TechStack from '../components/TechStack';
 import ContactUs from '../components/ContactUs';
+import Footer from '../components/Footer';
 
 const HomePage: React.FC = () => {
   const [phoneInNextSection, setPhoneInNextSection] = useState(false);
@@ -23,6 +24,7 @@ const HomePage: React.FC = () => {
       <MeetOurTeam />
       <TechStack />
       <ContactUs />
+      <Footer />
     </div>
   );
 };
