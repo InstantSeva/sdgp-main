@@ -104,87 +104,84 @@ const MeetOurTeam: React.FC = () => {
     //     const [firstName, ...rest] = person.fullName.split(" ");
     //     const lastName = rest.join(" ");
 
-    //     return (
-    //       <Box
-    //         key={index}
-    //         ref={(el) => {
-    //           if (el) cardRefs.current[index] = el;
-    //         }}
-    //         sx={{
-    //           position: "relative",
-    //           width: 150,
-    //           height: "100%",
-    //           borderRadius: 2,
-    //           overflow: "hidden",
-    //           boxShadow: 3,
-    //           cursor: "pointer",
-    //           flexShrink: 0,
-    //           backgroundColor: "#000",
-    //         }}
-    //       >
-    //         <img
-    //           src={person.image}
-    //           alt={person.fullName}
-    //           style={{
-    //             width: "100%",
-    //             height: "100%",
-    //             objectFit: "cover",
-    //             filter: "brightness(0.6)",
-    //           }}
-    //         />
+        return (
+          <Box
+            key={index}
+            // ref={(el) => {
+            //   if (el) cardRefs.current[index] = el;
+            // }}
+            sx={{
+              position: "relative",
+              width: 150,
+              height: "100%",
+              borderRadius: 2,
+              overflow: "hidden",
+              boxShadow: 3,
+              cursor: "pointer",
+              flexShrink: 0,
+              backgroundColor: "#000",
+            }}
+          >
+            <img
+              src={person.image}
+              alt={person.fullName}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                filter: "brightness(0.6)",
+              }}
+            />
 
-    //         {/* Vertical first name (visible initially) */}
-    //         <Box
-    //           ref={(el) => {
-    //             if (el) verticalNameRefs.current[index] = el;
-    //           }}
-    //           sx={{
-    //             position: "absolute",
-    //             bottom: 20,
-    //             left: 20,
-    //             color: "white",
-    //             transform: "rotate(-90deg) translateY(100%)",
-    //             transformOrigin: "bottom left",
-    //             whiteSpace: "nowrap",
-    //             fontWeight: 700,
-    //             fontSize: 22,
-    //             opacity: 1,
-    //           }}
-    //         >
-    //           {firstName}
-    //         </Box>
+            {/* Vertical first name (visible initially) */}
+            <Box
+              // ref={(el) => {
+              //   if (el) verticalNameRefs.current[index] = el;
+              // }}
+              sx={{
+                position: "absolute",
+                bottom: 20,
+                left: 20,
+                color: "white",
+                transform: "rotate(-90deg) translateY(100%)",
+                transformOrigin: "bottom left",
+                whiteSpace: "nowrap",
+                fontWeight: 700,
+                fontSize: 22,
+                opacity: 1,
+              }}
+            >
+              {firstName}
+            </Box>
 
-    //         {/* Horizontal full name + LinkedIn icon (hidden initially) */}
-    //         <Box
-    //           ref={(el) => {
-    //             if (el) horizontalNameRefs.current[index] = el;
-    //           }}
-    //           sx={{
-    //             position: "absolute",
-    //             bottom: 30,
-    //             left: 30,
-    //             color: "white",
-    //             opacity: 0,
-    //             transform: "translateY(10px)",
-    //             display: "flex",
-    //             flexDirection: "column",
-    //             alignItems: "flex-start",
-    //             textAlign: "left",
-    //           }}
-    //         >
-    //           <Typography
-    //             variant="h5"
-    //             sx={{ fontWeight: 700, lineHeight: 1, textAlign: "left" }}
-    //           >
-    //             {firstName}
-    //           </Typography>
-    //           <Typography
-    //             variant="body2"
-    //             sx={{ lineHeight: 1, textAlign: "left" }}
-    //           >
-    //             {lastName}
-    //           </Typography>
-    //         </Box>
+            {/* Horizontal full name + LinkedIn icon (hidden initially) */}
+            <Box
+              // ref={(el) => {
+              //   if (el) horizontalNameRefs.current[index] = el;
+              // }}
+              sx={{
+                position: "absolute",
+                bottom: 30,
+                left: 30,
+                color: "white",
+                opacity: 0,
+                transform: "translateY(10px)",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                textAlign: "left",
+              }}
+            >
+              <Typography
+                variant="h5"
+                sx={{ fontWeight: 700, lineHeight: 1, textAlign: "left" }}
+              >
+                {firstName}
+              </Typography>
+              <Typography variant="body2" sx={{ lineHeight: 1, textAlign: "left" }}>
+                {lastName}
+              </Typography>
+            </Box>
 
     //         {/* LinkedIn Icon (appears on hover) */}
     //         <IconButton
