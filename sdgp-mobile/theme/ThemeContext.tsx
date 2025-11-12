@@ -1,37 +1,32 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
-import * as eva from "@eva-design/eva";
-import { ThemeType as EvaThemeType } from "@ui-kitten/components";
-import { darkTheme } from "./dark";
-import { lightTheme } from "./light";
+import React, { createContext, useState, useContext } from "react";
+import type { ThemeType } from "@ui-kitten/components";
+import { lightTheme, darkTheme } from "./index";
 
-type ThemeMode = "light" | "dark";
+type ThemeTypeName = "light" | "dark";
 
-interface ThemeContextProps {
-  themeName: ThemeMode;
+interface ThemeContextType {
+  theme: ThemeTypeName;
   toggleTheme: () => void;
-  themeObject: EvaThemeType;
+  themeObject: ThemeType;
 }
 
-const ThemeContext = createContext<ThemeContextProps>({
-  themeName: "light",
+const ThemeContext = createContext<ThemeContextType>({
+  theme: "light",
   toggleTheme: () => {},
-  themeObject: eva.light,
+  themeObject: lightTheme,
 });
 
-export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [themeName, setThemeName] = useState<ThemeMode>("light");
+export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+  const [theme, setTheme] = useState<ThemeTypeName>("light");
 
   const toggleTheme = () => {
-    setThemeName((prev) => (prev === "light" ? "dark" : "light"));
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
-  const themeObject: EvaThemeType =
-    themeName === "light"
-      ? ({ ...eva.light, ...lightTheme } as EvaThemeType)
-      : ({ ...eva.dark, ...darkTheme } as EvaThemeType);
+  const themeObject = theme === "light" ? lightTheme : darkTheme;
 
   return (
-    <ThemeContext.Provider value={{ themeName, toggleTheme, themeObject }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, themeObject }}>
       {children}
     </ThemeContext.Provider>
   );
