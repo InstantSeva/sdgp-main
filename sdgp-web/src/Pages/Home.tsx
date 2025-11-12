@@ -3,6 +3,9 @@ import HeroSection from '../components/HeroSection';
 import ProblemSection from '../components/ProblemSection';
 import TrustSection from '../components/TrustSection'; // Your new component
 import FeaturesSection from '../components/FeaturesSection'; // Your existing carousel
+import MeetOurTeam from '../components/MeetOurTeam';
+import TechStack from '../components/TechStack';
+import ContactUs from '../components/ContactUs';
 
 const HomePage: React.FC = () => {
   const [phoneInNextSection, setPhoneInNextSection] = useState(false);
@@ -17,6 +20,9 @@ const HomePage: React.FC = () => {
       {/* <ProblemSection onPhoneLeave={handlePhoneLeaveProblem} />
       <FeaturesSection /> */}
       <TrustSection />
+      <MeetOurTeam />
+      <TechStack />
+      <ContactUs />
     </div>
   );
 };

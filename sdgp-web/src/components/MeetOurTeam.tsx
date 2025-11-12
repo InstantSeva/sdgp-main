@@ -87,65 +87,65 @@ const MeetOurTeam: React.FC = () => {
   }, []);
 
   return (
-    // <Box
-    //   ref={containerRef}
-    //   sx={{
-    //     display: "flex",
-    //     justifyContent: "center",
-    //     alignItems: "center",
-    //     gap: 2,
-    //     width: "100%",
-    //     height: 400,
-    //     padding: 2,
-    //     overflow: "hidden",
-    //   }}
-    // >
-    //   {people.map((person, index) => {
-    //     const [firstName, ...rest] = person.fullName.split(" ");
-    //     const lastName = rest.join(" ");
+    <Box
+      ref={containerRef}
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 2,
+        width: '100%',
+        height: 400,
+        padding: 2,
+        overflow: 'hidden',
+      }}
+    >
+      {people.map((person, index) => {
+        const [firstName, ...rest] = person.fullName.split(' ');
+        const lastName = rest.join(' ');
 
         return (
           <Box
             key={index}
-            // ref={(el) => {
-            //   if (el) cardRefs.current[index] = el;
-            // }}
+            ref={(el) => {
+              if (el) cardRefs.current[index] = el;
+            }}
             sx={{
-              position: "relative",
+              position: 'relative',
               width: 150,
-              height: "100%",
+              height: '100%',
               borderRadius: 2,
-              overflow: "hidden",
+              overflow: 'hidden',
               boxShadow: 3,
-              cursor: "pointer",
+              cursor: 'pointer',
               flexShrink: 0,
-              backgroundColor: "#000",
+              backgroundColor: '#000',
             }}
           >
             <img
               src={person.image}
               alt={person.fullName}
               style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                filter: "brightness(0.6)",
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                filter: 'brightness(0.6)',
               }}
             />
 
             {/* Vertical first name (visible initially) */}
             <Box
-              // ref={(el) => {
-              //   if (el) verticalNameRefs.current[index] = el;
-              // }}
+              ref={(el) => {
+                if (el) verticalNameRefs.current[index] = el;
+              }}
               sx={{
-                position: "absolute",
+                position: 'absolute',
                 bottom: 20,
                 left: 20,
-                color: "white",
-                transform: "rotate(-90deg) translateY(100%)",
-                transformOrigin: "bottom left",
-                whiteSpace: "nowrap",
+                color: 'white',
+                transform: 'rotate(-90deg) translateY(100%)',
+                transformOrigin: 'bottom left',
+                whiteSpace: 'nowrap',
                 fontWeight: 700,
                 fontSize: 22,
                 opacity: 1,
@@ -156,60 +156,56 @@ const MeetOurTeam: React.FC = () => {
 
             {/* Horizontal full name + LinkedIn icon (hidden initially) */}
             <Box
-              // ref={(el) => {
-              //   if (el) horizontalNameRefs.current[index] = el;
-              // }}
+              ref={(el) => {
+                if (el) horizontalNameRefs.current[index] = el;
+              }}
               sx={{
-                position: "absolute",
+                position: 'absolute',
                 bottom: 30,
                 left: 30,
-                color: "white",
+                color: 'white',
                 opacity: 0,
-                transform: "translateY(10px)",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-                textAlign: "left",
+                transform: 'translateY(10px)',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                textAlign: 'left',
               }}
             >
-              <Typography
-                variant="h5"
-                sx={{ fontWeight: 700, lineHeight: 1, textAlign: "left" }}
-              >
+              <Typography variant="h5" sx={{ fontWeight: 700, lineHeight: 1, textAlign: 'left' }}>
                 {firstName}
               </Typography>
-              <Typography variant="body2" sx={{ lineHeight: 1, textAlign: "left" }}>
+              <Typography variant="body2" sx={{ lineHeight: 1, textAlign: 'left' }}>
                 {lastName}
               </Typography>
             </Box>
 
-    //         {/* LinkedIn Icon (appears on hover) */}
-    //         <IconButton
-    //           ref={(el) => {
-    //             if (el) iconRefs.current[index] = el;
-    //           }}
-    //           sx={{
-    //             position: "absolute",
-    //             bottom: 30,
-    //             right: 20,
-    //             color: "white",
-    //             opacity: 0,
-    //             transform: "translateX(-10px)",
-    //             transition: "color 0.3s ease",
-    //             "&:hover": { color: "#0A66C2" },
-    //           }}
-    //           onClick={(e) => {
-    //             e.stopPropagation();
-    //             window.open("https://www.linkedin.com", "_blank");
-    //           }}
-    //         >
-    //           <LinkedInIcon />
-    //         </IconButton>
-    //       </Box>
-    //     );
-    //   })}
-    // </Box>
-    <></>
+            {/* LinkedIn Icon (appears on hover) */}
+            <IconButton
+              ref={(el) => {
+                if (el) iconRefs.current[index] = el;
+              }}
+              sx={{
+                position: 'absolute',
+                bottom: 30,
+                right: 20,
+                color: 'white',
+                opacity: 0,
+                transform: 'translateX(-10px)',
+                transition: 'color 0.3s ease',
+                '&:hover': { color: '#0A66C2' },
+              }}
+              onClick={(e) => {
+                e.stopPropagation();
+                window.open('https://www.linkedin.com', '_blank');
+              }}
+            >
+              <LinkedInIcon />
+            </IconButton>
+          </Box>
+        );
+      })}
+    </Box>
   );
 };
 
