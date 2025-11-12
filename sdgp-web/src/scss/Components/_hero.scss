@@ -1,0 +1,26 @@
+.hero-container {
+  padding-top: 100px;
+}
+
+.hero-main-container {
+  height: 642px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $main-bg;
+  background-size: cover;
+  background-position: center center;
+  overflow: hidden;
+  translate: none;
+  rotate: none;
+  scale: none;
+  left: 0px;
+  top: 0.001px;
+  margin: 0px;
+  max-width: 1343px;
+  width: 1343px;
+  max-height: 642px;
+  padding: 0px;
+  box-sizing: border-box;
+  transform: translate(0px, 0px);
+}
