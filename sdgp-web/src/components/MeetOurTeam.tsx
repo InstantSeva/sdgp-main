@@ -89,9 +89,9 @@ const MeetOurTeam: React.FC = () => {
         return (
           <Box
             key={index}
-            ref={(el) => {
-              if (el) cardRefs.current[index] = el;
-            }}
+            // ref={(el) => {
+            //   if (el) cardRefs.current[index] = el;
+            // }}
             sx={{
               position: "relative",
               width: 150,
@@ -117,9 +117,9 @@ const MeetOurTeam: React.FC = () => {
 
             {/* Vertical first name (visible initially) */}
             <Box
-              ref={(el) => {
-                if (el) verticalNameRefs.current[index] = el;
-              }}
+              // ref={(el) => {
+              //   if (el) verticalNameRefs.current[index] = el;
+              // }}
               sx={{
                 position: "absolute",
                 bottom: 20,
@@ -138,9 +138,9 @@ const MeetOurTeam: React.FC = () => {
 
             {/* Horizontal full name + LinkedIn icon (hidden initially) */}
             <Box
-              ref={(el) => {
-                if (el) horizontalNameRefs.current[index] = el;
-              }}
+              // ref={(el) => {
+              //   if (el) horizontalNameRefs.current[index] = el;
+              // }}
               sx={{
                 position: "absolute",
                 bottom: 30,
