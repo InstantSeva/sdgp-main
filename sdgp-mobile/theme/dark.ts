@@ -1,34 +1,11 @@
 export const darkTheme = {
-  // Primary Colors
-  'primary-color': '#1168BC',
-  'primary-disabled-color': '#7AA4CE',
+  'color-primary-500': '#5A7BFF',
+  'color-success-500': '#00E096',
+  'color-info-500': '#3366FF',
+  'color-warning-500': '#FFC94D',
+  'color-danger-500': '#FF708D',
 
-  // Status Colors
-  'color-success-500': '#00D68F',
-  'color-info-500': '#0095FF',
-  'color-warning-500': '#FFAA00',
-  'color-danger-500': '#FF3D71',
-
-  // Text Colors
+  'background-basic-color-1': '#1A1A1A',
+  'background-basic-color-2': '#2B2B2B',
   'text-basic-color': '#FFFFFF',
-  'text-disabled-color': '#8F9BB3',
-
-  // Input Colors
-  'input-border-color': '#354474',
-  'input-border-disabled-color': '#354474',
-  'input-background-color': '#171D33',
-  'input-background-disabled-color': '#23293E',
-
-  // Typography
-  'font-family-regular': 'poppins-regular',
-  'font-family-medium': 'poppins-medium',
-  'font-family-semibold': 'poppins-semibold',
-  'font-family-bold': 'poppins-bold',
-
-  'font-size-xs': 10,
-  'font-size-sm': 12,
-  'font-size-md': 14,
-  'font-size-lg': 16,
-  'font-size-xl': 20,
-  'font-size-xxl': 24,
 };
