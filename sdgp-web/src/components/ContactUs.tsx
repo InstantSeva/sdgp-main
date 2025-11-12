@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from 'react';
 import {
   Box,
   Typography,
@@ -8,12 +8,12 @@ import {
   Snackbar,
   Alert,
   useMediaQuery,
-} from "@mui/material";
-import EmailIcon from "@mui/icons-material/Email";
-import PhoneIcon from "@mui/icons-material/Phone";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import emailjs from "emailjs-com";
+} from '@mui/material';
+import EmailIcon from '@mui/icons-material/Email';
+import PhoneIcon from '@mui/icons-material/Phone';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import emailjs from 'emailjs-com';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,14 +21,14 @@ const ContactUs: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const formRef = useRef<HTMLDivElement | null>(null);
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
   });
   const [open, setOpen] = useState(false);
   const [success, setSuccess] = useState(true);
-  const isSmallScreen = useMediaQuery("(max-width:900px)");
+  const isSmallScreen = useMediaQuery('(max-width:900px)');
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -39,10 +39,10 @@ const ContactUs: React.FC = () => {
           opacity: 1,
           y: 0,
           duration: 1.2,
-          ease: "power3.out",
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top 85%",
+            start: 'top 85%',
           },
         }
       );
@@ -50,9 +50,7 @@ const ContactUs: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -61,21 +59,21 @@ const ContactUs: React.FC = () => {
 
     emailjs
       .send(
-        "service_r4gapx7",
-        "template_p1036sv",
+        'service_r4gapx7',
+        'template_p1036sv',
         {
           from_name: formData.name,
           reply_to: formData.email,
           phone: formData.phone,
           message: formData.message,
         },
-        "Et3AjbOAI5dZ-yuas"
+        'Et3AjbOAI5dZ-yuas'
       )
       .then(
         () => {
           setSuccess(true);
           setOpen(true);
-          setFormData({ name: "", email: "", phone: "", message: "" });
+          setFormData({ name: '', email: '', phone: '', message: '' });
         },
         () => {
           setSuccess(false);
@@ -86,35 +84,36 @@ const ContactUs: React.FC = () => {
 
   return (
     <Box
+      id="contactUs"
       sx={{
-        display: "flex",
-        justifyContent: "center",
-        width: "100%",
+        display: 'flex',
+        justifyContent: 'center',
+        width: '100%',
         py: isSmallScreen ? 6 : 10,
-        backgroundColor: "#0E0E0E",
+        backgroundColor: '#0e141b',
       }}
     >
       <Box
         ref={containerRef}
         sx={{
-          display: "flex",
-          flexDirection: isSmallScreen ? "column" : "row",
-          justifyContent: "space-between",
-          alignItems: "stretch",
-          backgroundColor: "#121212",
+          display: 'flex',
+          flexDirection: isSmallScreen ? 'column' : 'row',
+          justifyContent: 'space-between',
+          alignItems: 'stretch',
+          backgroundColor: '#121212',
           borderRadius: 3,
-          color: "white",
-          width: "100%",
-          maxWidth: "940px",
+          color: 'white',
+          width: '100%',
+          maxWidth: '940px',
           px: isSmallScreen ? 3 : 6,
           py: isSmallScreen ? 4 : 6,
           gap: isSmallScreen ? 4 : 6,
-          boxShadow: "0 0 25px rgba(0,0,0,0.4)",
+          boxShadow: '0 0 25px rgba(0,0,0,0.4)',
         }}
       >
         <Box sx={{ flex: 1, minWidth: 320 }}>
           <Typography
-            variant={isSmallScreen ? "h4" : "h3"}
+            variant={isSmallScreen ? 'h4' : 'h3'}
             sx={{ fontWeight: 700, mb: 2, lineHeight: 1.2 }}
           >
             Contact Us
@@ -122,52 +121,52 @@ const ContactUs: React.FC = () => {
           <Typography
             variant="body1"
             sx={{
-              color: "#B0B0B0",
+              color: '#B0B0B0',
               lineHeight: 1.7,
               mb: 4,
               fontSize: isSmallScreen ? 14 : 16,
             }}
           >
-            For any inquiries regarding our services or support, please fill out the form below. Our team strives to respond within one business day.
+            For any inquiries regarding our services or support, please fill out the form below. Our
+            team strives to respond within one business day.
           </Typography>
           <Box
             sx={{
-              display: "flex",
-              flexWrap: "wrap",
+              display: 'flex',
+              flexWrap: 'wrap',
               gap: 3,
-              alignItems: "center",
+              alignItems: 'center',
             }}
           >
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <IconButton
                 sx={{
-                  backgroundColor: "#1C1C1C",
-                  color: "white",
+                  backgroundColor: '#1C1C1C',
+                  color: 'white',
                   width: 48,
                   height: 48,
-                  "&:hover": { backgroundColor: "#2A2A2A" },
+                  '&:hover': { backgroundColor: '#2A2A2A' },
                 }}
               >
                 <EmailIcon />
               </IconButton>
-              <Box sx={{ textAlign: "left" }}>
+              <Box sx={{ textAlign: 'left' }}>
                 <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
                   Email
                 </Typography>
-                <Typography variant="body2" sx={{ color: "#B0B0B0" }}>
+                <Typography variant="body2" sx={{ color: '#B0B0B0' }}>
                   contact@example.com
                 </Typography>
+              </Box>
             </Box>
-
-            </Box>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1, textAlign: "left" }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, textAlign: 'left' }}>
               <IconButton
                 sx={{
-                  backgroundColor: "#1C1C1C",
-                  color: "white",
+                  backgroundColor: '#1C1C1C',
+                  color: 'white',
                   width: 48,
                   height: 48,
-                  "&:hover": { backgroundColor: "#2A2A2A" },
+                  '&:hover': { backgroundColor: '#2A2A2A' },
                 }}
               >
                 <PhoneIcon />
@@ -176,7 +175,7 @@ const ContactUs: React.FC = () => {
                 <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
                   Phone
                 </Typography>
-                <Typography variant="body2" sx={{ color: "#B0B0B0" }}>
+                <Typography variant="body2" sx={{ color: '#B0B0B0' }}>
                   +92 312 1234567
                 </Typography>
               </Box>
@@ -190,11 +189,11 @@ const ContactUs: React.FC = () => {
           sx={{
             flex: 1,
             minWidth: 320,
-            backgroundColor: "#181818",
+            backgroundColor: '#181818',
             p: 4,
             borderRadius: 3,
-            display: "flex",
-            flexDirection: "column",
+            display: 'flex',
+            flexDirection: 'column',
             gap: 2.5,
           }}
         >
@@ -207,12 +206,12 @@ const ContactUs: React.FC = () => {
             fullWidth
             InputProps={{
               sx: {
-                backgroundColor: "#000",
-                color: "white",
+                backgroundColor: '#000',
+                color: 'white',
                 borderRadius: 1,
               },
             }}
-            InputLabelProps={{ sx: { color: "#888" } }}
+            InputLabelProps={{ sx: { color: '#888' } }}
           />
           <TextField
             name="email"
@@ -223,12 +222,12 @@ const ContactUs: React.FC = () => {
             fullWidth
             InputProps={{
               sx: {
-                backgroundColor: "#000",
-                color: "white",
+                backgroundColor: '#000',
+                color: 'white',
                 borderRadius: 1,
               },
             }}
-            InputLabelProps={{ sx: { color: "#888" } }}
+            InputLabelProps={{ sx: { color: '#888' } }}
           />
           <TextField
             name="phone"
@@ -239,12 +238,12 @@ const ContactUs: React.FC = () => {
             fullWidth
             InputProps={{
               sx: {
-                backgroundColor: "#000",
-                color: "white",
+                backgroundColor: '#000',
+                color: 'white',
                 borderRadius: 1,
               },
             }}
-            InputLabelProps={{ sx: { color: "#888" } }}
+            InputLabelProps={{ sx: { color: '#888' } }}
           />
           <TextField
             name="message"
@@ -257,23 +256,23 @@ const ContactUs: React.FC = () => {
             fullWidth
             InputProps={{
               sx: {
-                backgroundColor: "#000",
-                color: "white",
+                backgroundColor: '#000',
+                color: 'white',
                 borderRadius: 1,
               },
             }}
-            InputLabelProps={{ sx: { color: "#888" } }}
+            InputLabelProps={{ sx: { color: '#888' } }}
           />
           <Button
             type="submit"
             variant="contained"
             sx={{
-              backgroundColor: "#17BBEF",
-              color: "#ffffffff",
+              backgroundColor: '#17BBEF',
+              color: '#ffffffff',
               borderRadius: 2,
               fontWeight: 600,
               py: 1.2,
-              "&:hover": { backgroundColor: "#0D9BC7" },
+              '&:hover': { backgroundColor: '#0D9BC7' },
             }}
           >
             Submit
@@ -284,16 +283,16 @@ const ContactUs: React.FC = () => {
         open={open}
         autoHideDuration={4000}
         onClose={() => setOpen(false)}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
         <Alert
           onClose={() => setOpen(false)}
-          severity={success ? "success" : "error"}
+          severity={success ? 'success' : 'error'}
           variant="filled"
         >
           {success
-            ? "Message sent successfully! We’ll get back to you soon."
-            : "Failed to send message. Please try again."}
+            ? 'Message sent successfully! We’ll get back to you soon.'
+            : 'Failed to send message. Please try again.'}
         </Alert>
       </Snackbar>
     </Box>
