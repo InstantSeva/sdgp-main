@@ -7,149 +7,70 @@ import SubSectionHeading from './SubSectionHeading';
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface ProblemSectionProps {
-  onPhoneLeave?: () => void;
-}
-
-const ProblemSection: React.FC<ProblemSectionProps> = ({ onPhoneLeave }) => {
+const ProblemSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const phoneRef = useRef<HTMLImageElement | null>(null);
-  const headingRef = useRef<HTMLDivElement | null>(null);
   const leftCardRef = useRef<HTMLDivElement | null>(null);
   const rightCardRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
     const phone = phoneRef.current;
-    const heading = headingRef.current;
     const leftCard = leftCardRef.current;
     const rightCard = rightCardRef.current;
 
-    // Reset all elements to initial state
-    gsap.set(phone, { y: -200, opacity: 0, scale: 0.8 });
-    gsap.set(heading, { opacity: 0, y: 40 });
-    gsap.set([leftCard, rightCard], { opacity: 0, x: -60 });
-    gsap.set(rightCard, { x: 60 });
+    if (!section || !phone || !leftCard || !rightCard) return;
 
-    // Create the main timeline
+    gsap.set(phone, { y: -150, opacity: 0, scale: 0.9 });
+    gsap.set([leftCard, rightCard], { opacity: 0, y: 50 });
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: 'top 75%',
+        start: 'top 80%',
+        end: 'bottom 60%',
         scrub: true,
-        markers: false,
-        anticipatePin: 1, // ✅ helps prevent scroll jumps
-        onLeave: () => {
-          onPhoneLeave?.(); // ✅ still notify parent safely
-        },
       },
     });
 
-    // STEP 1: Phone enters from top to center
-    tl.to(phone, {
-      y: 0,
-      opacity: 1,
-      scale: 1,
-      duration: 1.2,
-      ease: 'power3.out',
-    })
+    tl.to(phone, { y: 0, opacity: 1, scale: 1, duration: 1, ease: 'power3.out' })
+      .to(leftCard, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.4')
+      .to(rightCard, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3');
 
-      // STEP 2: Heading fades in
-      .to(
-        heading,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power2.out',
-        },
-        '-=0.6'
-      )
-
-      // STEP 3: Cards slide in from sides
-      .to(
-        [leftCard, rightCard],
-        {
-          opacity: 1,
-          x: 0,
-          duration: 1,
-          stagger: 0.2,
-          ease: 'power2.out',
-        },
-        '-=0.3'
-      )
-
-      // STEP 4: Content fades out first (heading and cards)
-      .to(
-        [heading, leftCard, rightCard],
-        {
-          opacity: 0,
-          y: -40,
-          duration: 1,
-          ease: 'power2.inOut',
-        },
-        '+=0.3' // Reduced pause
-      )
-
-      // STEP 5: Phone moves down and hides below the section
-      .to(
-        phone,
-        {
-          y: 300, // Reduced distance
-          opacity: 0,
-          scale: 0.9,
-          duration: 1.2, // Reduced duration
-          ease: 'power2.inOut',
-        },
-        '-=0.8' // Start phone animation earlier
-      );
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, [onPhoneLeave]);
+    return () => ScrollTrigger.getAll().forEach((t) => t.kill());
+  }, []);
 
   return (
     <section ref={sectionRef} className="problem-page-container">
-      {/* Heading */}
-      <div ref={headingRef}>
-        <SubSectionHeading
-          title="The Real Problem Today"
-          description="Trust is missing. Visibility is missing. We are solving the problem at both ends."
-        />
-      </div>
+      <SubSectionHeading
+        title="The Real Problem Today"
+        description="Trust is missing. Visibility is missing. We are solving it for both customers and service providers."
+      />
 
       <div className="problem-content-wrapper">
-        {/* Left Card */}
         <div ref={leftCardRef} className="problem-card left-card">
           <h3>For Customers</h3>
           <ul>
-            <li>It's hard to find trustworthy skilled workers locally.</li>
-            <li>You don't know who is actually certified.</li>
-            <li>You get people from social media – most are unverified.</li>
-            <li>You risk scams, poor quality jobs, and time wasted.</li>
-            <li>You don't know how to compare who is best.</li>
+            <li>Hard to find trustworthy workers locally</li>
+            <li>No real verification for skills</li>
+            <li>High risk of scams or poor quality jobs</li>
           </ul>
         </div>
 
-        {/* Phone in center */}
         <Box
-          ref={phoneRef}
           component="img"
           src={phoneMain}
-          alt="featured phone"
+          ref={phoneRef}
+          alt="Phone mockup"
           className="phone-container"
         />
 
-        {/* Right Card */}
         <div ref={rightCardRef} className="problem-card right-card">
           <h3>For Service Providers</h3>
           <ul>
-            <li>Good skilled workers don't get enough exposure.</li>
-            <li>They have no platform to build a "professional profile".</li>
-            <li>Most jobs come through random personal contacts.</li>
-            <li>No fair rating system to prove talent.</li>
-            <li>Hard to maintain career growth consistently.</li>
+            <li>Hard to get exposure</li>
+            <li>No proper review or rating system</li>
+            <li>Unstable income and visibility</li>
           </ul>
         </div>
       </div>

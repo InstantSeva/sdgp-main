@@ -65,7 +65,7 @@ const FeaturesSection: React.FC = () => {
         trigger: section,
         start: 'top 80%',
         end: 'bottom 40%',
-        scrub: 1,
+        scrub: true,
       },
     });
 
