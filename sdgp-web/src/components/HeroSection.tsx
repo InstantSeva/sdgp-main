@@ -9,6 +9,7 @@ import p1 from '../assets/phone-main.png';
 import p3 from '../assets/phone-main.png';
 import heroBg from '../assets/bg.png';
 import Heading from './Heading';
+import Beams from '../animation/Beams';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -115,6 +116,20 @@ const HeroSection: React.FC = () => {
     <div>
       {/* Hero Section */}
       <section ref={containerRef} id="hero" className="hero-main-container">
+        {/* Animated 2D Wave Background */}
+        <div className="hero-wave-container">
+          <Beams
+            beamWidth={2.5}
+            beamHeight={18}
+            beamNumber={15}
+            lightColor="#ffffff"
+            speed={2.5}
+            noiseIntensity={2}
+            scale={0.15}
+            rotation={43}
+          />
+        </div>
+
         {/* Main phone (for initial load only) */}
         <Box
           component="img"

@@ -16,10 +16,10 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <div>
+    <div style={{ width: '100%', overflowX: 'hidden' }}>
       <HeroSection />
-      {/* <ProblemSection onPhoneLeave={handlePhoneLeaveProblem} />
-      <FeaturesSection /> */}
+      <ProblemSection onPhoneLeave={handlePhoneLeaveProblem} />
+      <FeaturesSection />
       <TrustSection />
       <MeetOurTeam />
       <TechStack />

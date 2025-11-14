@@ -54,27 +54,46 @@ const FeaturesSection: React.FC = () => {
     const description = descriptionRef.current;
     const carousel = carouselRef.current;
 
-    // Check if all elements exist
     if (!section || !heading || !description || !carousel) return;
 
+    // Initial states
     gsap.set([heading, description, carousel], { opacity: 0, y: 40 });
 
-    const timeline = gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 80%',
-          end: 'bottom 60%',
-          scrub: true,
-        },
-      })
-      .to(heading, { opacity: 1, y: 0, duration: 1, ease: 'power2.out' })
-      .to(description, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.5')
-      .to(carousel, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.3');
+    // ✨ Fade-in animation
+    const fadeInTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 80%',
+        end: 'bottom 40%',
+        scrub: true,
+      },
+    });
 
-    // Cleanup function
+    fadeInTl
+      .to(heading, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
+      .to(description, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.4')
+      .to(carousel, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3');
+
+    // 🎬 Fade-out and move up as user scrolls past
+    const fadeOutTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'bottom 75%', // start fading before leaving viewport
+        end: 'bottom top', // until it fully leaves
+        scrub: 1,
+      },
+    });
+
+    fadeOutTl.to(section, {
+      opacity: 0,
+      y: -100,
+      duration: 1.2,
+      ease: 'power3.out',
+    });
+
     return () => {
-      timeline.kill();
+      fadeInTl.kill();
+      fadeOutTl.kill();
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
@@ -83,7 +102,7 @@ const FeaturesSection: React.FC = () => {
 
   return (
     <section className="features-section" ref={sectionRef}>
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ width: '100%' }}>
         <div ref={headingRef}>
           <SubSectionHeading
             title="Powerful Features Designed for Trust, Safety & Easy Service Hiring"
