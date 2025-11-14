@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import phoneMain from '../assets/phone-main.png';
+import phoneMain from '../assests/fixgo.png';
 import p0 from '../assets/phone-main.png';
 import p1 from '../assets/phone-main.png';
 import p3 from '../assets/phone-main.png';
@@ -165,7 +165,7 @@ const HeroSection: React.FC = () => {
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              mt: 6,
+              mt: 2,
               position: 'relative',
               zIndex: 5,
             }}

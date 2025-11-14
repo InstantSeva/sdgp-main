@@ -6,6 +6,7 @@ import FeaturesSection from '../components/FeaturesSection'; // Your existing ca
 import MeetOurTeam from '../components/MeetOurTeam';
 import TechStack from '../components/TechStack';
 import ContactUs from '../components/ContactUs';
+import Navbar from '../components/NavBar';
 
 const HomePage: React.FC = () => {
   const [phoneInNextSection, setPhoneInNextSection] = useState(false);
@@ -16,6 +17,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div style={{ width: '100%', overflowX: 'hidden' }}>
+      <Navbar />
       <HeroSection />
       <ProblemSection onPhoneLeave={handlePhoneLeaveProblem} />
       <FeaturesSection />
